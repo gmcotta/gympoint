@@ -15,15 +15,9 @@ import {
 export default function HelpOrderItem({ data, ...rest }) {
   const today = new Date();
   const dateParsed = useMemo(() => {
-    if (Platform.OS === 'ios') {
-      return formatRelative(parseISO(data.createdAt), today, {
-        addSuffix: true,
-      });
-    } else {
-      return formatRelative(subHours(parseISO(data.createdAt), 3), today, {
-        addSuffix: true,
-      });
-    }
+    return formatRelative(parseISO(data.createdAt), today, {
+      addSuffix: true,
+    });
   }, [data.createdAt]);
 
   return (

@@ -16,15 +16,9 @@ export default function ReadHelpOrder({ navigation }) {
 
   const today = new Date();
   const dateParsed = useMemo(() => {
-    if (Platform.OS === 'ios') {
-      return formatRelative(parseISO(createdAt), today, {
-        addSuffix: true,
-      });
-    } else {
-      return formatRelative(subHours(parseISO(createdAt), 3), today, {
-        addSuffix: true,
-      });
-    }
+    return formatRelative(parseISO(createdAt), today, {
+      addSuffix: true,
+    });
   }, [createdAt]);
 
   return (

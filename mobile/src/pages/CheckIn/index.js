@@ -12,6 +12,7 @@ import { Container, SubmitButton, List, CheckInText } from './styles';
 
 export default function CheckIn() {
   const { id } = useSelector(state => state.user.profile.student);
+  const { active } = useSelector(state => state.user.profile.enrollment);
 
   const [page, setPage] = useState(1);
   const [more, setMore] = useState(true);
@@ -79,10 +80,7 @@ export default function CheckIn() {
       refreshPage();
     } catch (error) {
       console.tron.warn(error);
-      Alert.alert(
-        'Error while check-in',
-        'You may have reached your daily/weekly amount.'
-      );
+      Alert.alert('Error while check-in', 'Try again later.');
     }
   }
 
@@ -91,9 +89,15 @@ export default function CheckIn() {
       <StatusBarLogo />
       <Container>
         <CheckInText>
-          <Text>{`You have made ${count} check-in(s)!`}</Text>
+          <Text>
+            {active
+              ? `You have made ${count} check-in(s)!`
+              : `Your enrollment is not active yet!`}
+          </Text>
         </CheckInText>
-        <SubmitButton onPress={handleCheckin}>New check-in</SubmitButton>
+        <SubmitButton disabled={active} onPress={handleCheckin}>
+          New check-in
+        </SubmitButton>
         <List
           data={checkin}
           refreshing={refreshing}
