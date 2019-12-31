@@ -29,7 +29,7 @@ The databases used are PostgreSQL and Redis, which you can use Docker containers
 <br/>
 
 ```
-docker run --name gympointdb -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
+docker run --name gympointdb -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres:11
 docker run --name redisgympoint -p 6379:6379 -d -t redis:alpine
 ```
 
