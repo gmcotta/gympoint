@@ -54,11 +54,24 @@ export default function Enrollment() {
   async function handleEnrollmentRemove(enrollment_id) {
     if (window.confirm('Are you sure you wanna remove this enrollment?')) {
       try {
+        setPage(1);
         await api.delete(`enrollments/${enrollment_id}`);
-        const newEnrollments = enrollments.filter(
-          enrollment => enrollment.id !== enrollment_id
-        );
-        setEnrollments(newEnrollments);
+
+        const { data: allEnrollments } = await api.get('enrollments');
+        setAllItems(allEnrollments.length);
+        const { data: response } = await api.get('enrollments', {
+          params: { page: 1, perPage },
+        });
+        const enrollmentsData = response.map(e => ({
+          ...e,
+          formattedStartDate: format(
+            parseISO(e.start_date),
+            "MMMM' 'dd', 'yyyy"
+          ),
+          formattedEndDate: format(parseISO(e.end_date), "MMMM' 'dd', 'yyyy"),
+        }));
+        setEnrollments(enrollmentsData);
+
         toast.success('Enrollment removed successfully.');
       } catch (error) {
         toast.error('An error occurred. Plase, try again later.');

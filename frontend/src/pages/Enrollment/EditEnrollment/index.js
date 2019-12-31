@@ -26,9 +26,7 @@ import { formatPrice } from '~/util/format';
 
 export default function NewEnrollment() {
   const schema = Yup.object().shape({
-    start_date: Yup.date()
-      .min(new Date(), 'Please, select a valid value.')
-      .typeError('Please, select a valid value.'),
+    start_date: Yup.date().typeError('Please, select a valid value.'),
   });
 
   const [enrollment, setEnrollment] = useState({});
@@ -39,7 +37,6 @@ export default function NewEnrollment() {
   useEffect(() => {
     async function loadEnrollment() {
       const { data: response } = await api.get(`enrollments/${id}`);
-      console.log(response);
       setEnrollment({
         student: response.student,
         plan: response.plan,
@@ -78,7 +75,6 @@ export default function NewEnrollment() {
       label: s.name,
       value: s.id,
     }));
-    // plans.filter(({ value }) => value === enrollment.plan);
     setStudents(studentData);
     return studentData.filter(i =>
       i.label.toLowerCase().includes(inputValue.toLowerCase())
@@ -124,7 +120,6 @@ export default function NewEnrollment() {
   }
 
   async function updateEnrollment(data) {
-    console.log(enrollment, data);
     const newData = {
       student_id: enrollment.student,
       plan_id: enrollment.plan,

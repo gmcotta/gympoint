@@ -8,7 +8,7 @@ class EnrollmentMail {
   }
 
   async handle({ data }) {
-    const { student, plan, start_date, end_date, price } = data;
+    const { id, student, plan, start_date, end_date, price } = data;
 
     console.log('A fila executou');
 
@@ -17,6 +17,7 @@ class EnrollmentMail {
       subject: 'Welcome to Gympoint',
       template: 'welcome',
       context: {
+        id,
         student: student.name,
         plan: plan.title,
         start_date: format(parseISO(start_date), "MMMM dd', 'yyyy"),

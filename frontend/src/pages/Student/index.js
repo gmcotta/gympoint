@@ -57,15 +57,21 @@ export default function Student() {
   async function handleStudentRemove(student_id) {
     if (window.confirm('Are you sure you wanna remove this student?')) {
       try {
+        setPage(1);
         await api.delete(`students/${student_id}`);
-        const newStudents = students.filter(
-          student => student.id !== student_id
-        );
-        setStudents(newStudents);
+
+        const { data: allStudents } = await api.get('students', {
+          params: { name },
+        });
+        setAllItems(allStudents.length);
+        const { data: response } = await api.get('students', {
+          params: { name, page: 1, perPage },
+        });
+        setStudents(response);
+
         toast.success('Student removed successfully.');
       } catch (error) {
         toast.error('An error occurred. Plase, try again later.');
-        console.tron.log(error);
       }
     }
   }

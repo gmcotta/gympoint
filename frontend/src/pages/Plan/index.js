@@ -56,13 +56,27 @@ export default function Plan() {
   async function handlePlanRemove(plan_id) {
     if (window.confirm('Are you sure you wanna remove this plan?')) {
       try {
+        setPage(1);
         await api.delete(`plans/${plan_id}`);
-        const newPlans = plans.filter(plan => plan.id !== plan_id);
-        setPlans(newPlans);
+
+        const { data: allPlans } = await api.get('plans');
+        setAllItems(allPlans.length);
+        const { data: response } = await api.get('plans', {
+          params: { page: 1, perPage },
+        });
+        const plansData = response.map(plan => ({
+          ...plan,
+          durationFormatted:
+            plan.duration === 1
+              ? `${plan.duration} month`
+              : `${plan.duration} months`,
+          priceFormatted: formatPrice(plan.price),
+        }));
+        setPlans(plansData);
+
         toast.success('Plan removed successfully.');
       } catch (error) {
         toast.error('An error occurred. Plase, try again later.');
-        console.tron.log(error);
       }
     }
   }

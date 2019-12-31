@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 
 const api = axios.create({
   baseURL:
-    Platform.OS === 'ios' ? 'http://localhost:3333' : 'http://10.0.3.2:3333',
+    Platform.OS === 'ios' ? 'http://localhost:3333' : 'http://10.0.2.2:3333',
 });
 
 export default api;

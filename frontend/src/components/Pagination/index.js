@@ -49,7 +49,7 @@ Pagination.propTypes = {
   page: PropTypes.number.isRequired,
   nextButtonDisabled: PropTypes.bool.isRequired,
   handleNextPage: PropTypes.func.isRequired,
-  defaultPageOption: PropTypes.objectOf(PropTypes.object).isRequired,
+  defaultPageOption: PropTypes.any.isRequired,
   pageOptions: PropTypes.arrayOf(PropTypes.object).isRequired,
   handlePageOption: PropTypes.func.isRequired,
 };

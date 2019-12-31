@@ -151,7 +151,10 @@ class EnrollmentController {
       price,
     });
 
+    const { id } = enrollment;
+
     await Queue.add(EnrollmentMail.key, {
+      id,
       student,
       plan,
       start_date,
@@ -172,9 +175,9 @@ class EnrollmentController {
       return res.status(400).json({ error: 'Validation fails.' });
     }
 
-    if (isBefore(parseISO(req.body.start_date), startOfDay(new Date()))) {
-      return res.status(400).json({ error: 'Past dates are not acceptable.' });
-    }
+    // if (isBefore(parseISO(req.body.start_date), startOfDay(new Date()))) {
+    //   return res.status(400).json({ error: 'Past dates are not acceptable.' });
+    // }
 
     const enrollment = await Enrollment.findByPk(req.params.enrollment_id);
 
