@@ -21,6 +21,32 @@ This challenge is required for the certification of Rocketseat's bootcamp.
 Watch the video.
 [![Watch the video](https://img.youtube.com/vi/1nGY44rnRvw/maxresdefault.jpg)](https://youtu.be/1nGY44rnRvw)
 
+## Main tools
+
+| Back-end       | Front-end         |    Mobile                    |
+| -------------- | ----------------  | ---------------------------- |
+| Express        | React             | React                        |
+| ESLint         | React Router DOM  | React Native                 |
+| Prettier       | React Icons       | React Native Gesture Handler |
+| Nodemon        | React Popup       | React Native Reanimated      |
+| Sucrase        | React Redux       | React Native Screens         |
+| Sentry         | React Select      | React Native Vector Icons    |
+| Bcryptjs       | React Toastify    | React Navigation             |
+| Bee-queue      | React Datepicker  | React Navigation Stack       |
+| Cors           | Reactotron        | React Navigation Tabs        |
+| Date-fns       | Redux Saga        | React Redux                  |
+| Dotenv         | Styled Components | Reactotron                   |
+| Json Web Token | React App Rewired | Redux Persist                |
+| Nodemailer     | Axios             | Redux Saga                   |
+| Pg             | Date-fns          | Styled Components            |
+| Sequelize      | History           | Axios                        |
+| Youch          | Immer             | Date-fns                     |
+| Yup            | Polished          | Immer                        |
+|                | Prop-types        | INTL                         |
+|                | ESLint            | Prop-types                   |
+|                | Prettier          | ESLint                       |
+|                |                   |                              |
+
 ## Setup
 
 Make sure you have installed Git, Node.js (LTS version), Yarn and Docker (optional). <br />
@@ -162,7 +188,7 @@ react-native run-android
 
 ### More Information
 
-You can access the following repositories for more details about the development.
+You can access the following repositories for more details about the commits.
 
 - Back-end: https://github.com/gmcotta/gympoint-backend
 - Front-end: https://github.com/gmcotta/gympoint-frontend
